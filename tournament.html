@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Tournament generator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+
+body {color:rgb(6, 1, 34); font-family: 'Courier New', Courier, monospace}
+button {background-color: rgb(247, 0, 33); color: rgb(255, 255, 255); font-size: 2rem}
+.content {width:50%; border: solid 1px black; margin:20px}
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- 
+
+1. input seeded players
+2. input unseeded players
+3. randomly match
+
+array 1
+array 2
+randomize array 1
+randomize a2
+mix two arrays
+output
+
+
+        -->
+<h1>Tournament teams generator</h1>
+<h3>Enter seeded players, separated by comma</h3>       
+<div id="seeded" class="content" contenteditable></div>
+<h3>Enter unseeded players, separated by comma</h3> 
+<div id="unseeded" class="content" contenteditable></div>
+<button id="button">Generate tournament pairs</button>
+<div id="output"></div>
+
+
+
+        <script>
+        
+        
+        const button = document.querySelector('#button');
+        const output = document.querySelector('#output');
+        let p = document.createElement('p');
+        
+
+        button.addEventListener('click', generate);
+
+        function generate() {
+            const seeded = document.querySelector('#seeded').textContent;
+            const unseeded = document.querySelector('#unseeded').textContent;
+            let array_s = seeded.split(",");
+            let array_uns = unseeded.split(",");
+            let sas = shuffle(array_s);
+            let saus = shuffle(array_uns);
+            console.log(sas);
+            console.log(saus);
+            let result = "";
+for(let i=0;i<array_s.length;i++){
+    let b = i+1;
+   result+= "Team " + b + ": " + array_s[i] + " " + array_uns[i] + "<br>";
+}
+
+document.querySelector('#output').innerHTML = "<h3>Here are the teams!</h3>" + result;
+
+        }
+
+        
+        
+        function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+        
+        </script>
+    </body>
+</html>
