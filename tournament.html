@@ -14,7 +14,7 @@
 
 body {color:rgb(6, 1, 34); font-family: 'Courier New', Courier, monospace}
 button {background-color: rgb(247, 0, 33); color: rgb(255, 255, 255); font-size: 2rem}
-.content {width:50%; border: solid 1px black; margin:20px}
+.content {width:40%; border: solid 1px black; margin:20px}
         </style>
     </head>
     <body>
@@ -33,6 +33,21 @@ randomize array 1
 randomize a2
 mix two arrays
 output
+
+
+1. show Team 1 (name1, name2) vs Team 2
+
+teams {
+
+    team1: "dfhdf, dfhdfh";
+    team2
+}
+
+games {
+
+    game1: "team1, team2"
+}
+
 
 
         -->
@@ -66,12 +81,29 @@ output
             console.log(sas);
             console.log(saus);
             let result = "";
+            let teams = [];
+            let games="";
 for(let i=0;i<array_s.length;i++){
     let b = i+1;
    result+= "Team " + b + ": " + array_s[i] + " " + array_uns[i] + "<br>";
+   teams[i]=array_s[i] + ", " + array_uns[i];
+   console.log(teams);
 }
 
-document.querySelector('#output').innerHTML = "<h3>Here are the teams!</h3>" + result;
+
+    let count=1;
+for(let a=0;a<teams.length;a++){
+
+
+    if (a%2==0) {
+    let b=a+1;
+    
+    games+= "Game " + (count) + ": " + "Team " + b + "(" + teams[a] + ") vs Team " + (b+1) + "(" + teams[a+1] + ")" + "<br>";
+   count++;
+   console.log(games);  }
+}
+
+document.querySelector('#output').innerHTML = "<h3>Here are the teams!</h3>" + result + "<h3>Games:</h3>" + games;
 
         }
 
