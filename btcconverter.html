@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>BTC to USD converter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+
+            body {color:rgb(6, 1, 34); font-family: 'Courier New', Courier, monospace}
+            button {background-color: rgb(247, 0, 33); color: rgb(255, 255, 255); font-size: 2rem}
+            #input {width:40%; border: solid 1px black; margin:20px}
+            #output {margin-top:20px}
+                    </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+            Enter BTC
+        <div id="input" contenteditable></div>
+        <button id="submit">Convert to bitcoin!</button>
+        <br>
+        <div id="output"></div>
+        
+       
+       <script>
+        const url = 'https://www.bitstamp.net/api/v2/ticker/btcusd/';
+        const button = document.querySelector('#submit');
+        const input = document.querySelector('#input');
+
+
+        
+       
+
+        function convert() {
+            let x=input.textContent;
+       
+       if (isNaN(x)) 
+           {
+           alert("Must input numbers");
+           return false;
+           
+           
+           
+           }  else {
+                const btc = document.querySelector('#input').textContent;
+
+                fetch(url)
+             .then(res => res.json())
+             .then(data => {
+                 let m = data.last;
+                 let usd = btc*m;
+                document.querySelector('#output').innerHTML = btc + " BTC is " + usd + " USD";
+        // code to handle the response
+            }).catch(err => {
+        console.error('Error: ', err);
+            });
+
+                
+           }
+            }
+
+        
+      
+        button.addEventListener('click', convert);
+
+        </script>
+    </body>
+</html>
